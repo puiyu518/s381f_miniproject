@@ -1,0 +1,18 @@
+{
+	"name": "s381f_miniproject",
+	"description": "comps381f_miniproject",
+	"version": "1.0.0",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"connect-mongo": "^3.1.2",
+		"cookie-session": "*",
+		"ejs": "*",
+		"express": "*",
+		"formidable": "latest",
+		"mongodb": "3.1"
+	},
+	"scripts": {
+		"start": "node server.js"
+	},
+	"engine": "*"
+}

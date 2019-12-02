@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+	<title>Search Result Page</title>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+
+<body>
+	<div class="w3-container w3-teal">
+       	       <h1>Showing <%=restaurant.length%> document(s).</h1>
+        </div>
+
+		<ol>
+			<% for (i in restaurant) { %>
+				<li>Name: <a href=/display?_id=<%= restaurant[i]._id %>><%= restaurant[i].name %></a></li>
+			<% } %>
+		</ol>
+
+	<div class="w3-container">
+	<button class="w3-btn w3-section w3-teal w3-ripple" onclick="goBack()">Go Back</button>
+	</div>
+
+	<script>
+            function goBack() {window.history.back();}
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title><%=restaurant[0].name%></title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+
+<body>
+    <script>
+        function goBack() { window.history.back(); }
+    </script>
+    <script>
+        function loadMap() {
+            var myLatLng = {
+                lat: <%=restaurant[0].address.coord[0] %>, lng:  <%=restaurant[0].address.coord[1] %>
+        };
+            //var myLatLng = new google.maps.LatLng({lat: 0000000, lng: 0000000});
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: myLatLng
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: <%= restaurant[0].name %>
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB_YS5l7_PfPdUv1JQJHENyPqiPbrVj2Y-mp36-mp_8b8&callback=loadMap"></script>
+    <div class="w3-container w3-teal">
+        <h1><%= restaurant[0].name%></h1>
+    </div>
+
+    <%if(restaurant[0].image){%>
+    <img src="data:<%=restaurant[0].mimetype%>;base64,<%=restaurant[0].image%>" class="w3-image w3-border w3-padding"
+        style="width:60%">
+    <%}%>
+
+
+    <div class="w3-container">
+        
+    <p><label class="w3-label w3-validate">Restauramt ID: </label><%= restaurant[0].restaurant_id%></p>
+    <p><label class="w3-label w3-validate">Name: </label><%= restaurant[0].name%></p>
+    <p><label class="w3-label w3-validate">Borough: </label><%= restaurant[0].borough%></p>
+    <p><label class="w3-label w3-validate">Cuisine: </label><%= restaurant[0].cuisine%></p>
+    <p><label class="w3-label w3-validate">Street: </label><%= restaurant[0].address.street%></p>
+    <p><label class="w3-label w3-validate">Building: </label><%= restaurant[0].address.building%></p>
+    <p><label class="w3-label w3-validate">Zipcode: </label><%= restaurant[0].address.zipcode%></p>
+    <p><label class="w3-label w3-validate">GPS:
+        </label>[<%= restaurant[0].address.coord[0]%>,<%= restaurant[0].address.coord[1]%>]</p>
+    <p><label class="w3-label w3-validate">Rating: </label>
+    </p>
+
+    <% if((restaurant[0].grades).length){%>
+    <ol>
+        <%for (i in restaurant[0].grades){
+            if(user == restaurant[0].grades[i].user){grade_create = true;}%>
+        <li><%= restaurant[0].grades[i].score%>&nbsp;(<%= restaurant[0].grades[i].user%>)</li>
+        <%}%>
+    </ol>
+    <%}%>
+        <p>
+            <label class="w3-label w3-validate">Owner: </label> <%= restaurant[0].owner%> </p>
+        <p>
+            </div>
+
+            <%
+    if(restaurant[0].address.coord[0] && restaurant[0].address.coord[1]){
+    %>
+            <a
+                href="/gmap?lat=<%= restaurant[0].address.coord[0]%>&lon=<%= restaurant[0].address.coord[1]%>&title=<%= restaurant[0].name%>">  ->View Map</a>
+            <%}%>
+
+    <div class="w3-container">
+        <%if(!rate ){%>
+            <a href="/rate?_id=<%= restaurant[0]._id%>" style="text-decoration: none">
+                <button class="w3-btn w3-section w3-teal w3-ripple">Rate</button>
+            </a>
+            <%}%>
+            <%if(user){%>
+            <a href="/modify?_id=<%= restaurant[0]._id%>" style="text-decoration: none">
+                <button class="w3-btn w3-section w3-teal w3-ripple">Edit</button>
+            </a>
+            <a href="/remove?_id=<%= restaurant[0]._id%>" style="text-decoration: none">
+                <button class="w3-btn w3-section w3-teal w3-ripple">Delete</button>
+            </a>
+            <%}%>
+	    <a href="/index">
+                <button class="w3-btn w3-section w3-teal w3-ripple">Home</button>
+            </a>
+            </div>
+</body>
+
+</html>
