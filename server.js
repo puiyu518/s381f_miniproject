@@ -7,7 +7,8 @@ const formidable = require('formidable');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const ObjectID = require('mongodb').ObjectID;
-const mongourl = "mongodb://test:test@cluster0-shard-00-00-0qxs5.mongodb.net:27017,cluster0-shard-00-01-0qxs5.mongodb.net:27017,cluster0-shard-00-02-0qxs5.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+const mongourl = "mongodb+srv://test:test@cluster0-exjt8.mongodb.net/test?retryWrites=true&w=majority
+";
 const dbName = "test";
 
 app.set('view engine', 'ejs');
