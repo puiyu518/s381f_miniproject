@@ -3,7 +3,7 @@
 	"description": "comps381f_miniproject",
 	"version": "1.0.0",
 	"dependencies": {
-		"body-parser": "^1.19.0",
+		"body-parser": "^1.20.1",
 		"connect-mongo": "^3.1.2",
 		"cookie-session": "*",
 		"ejs": "*",
